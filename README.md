@@ -1,4 +1,4 @@
-# SecurePasswordManager\
+# SecurePasswordManager
 >>login/register encrypted with password hashing and salting in .Net while using entiity framework for data access
 >>----------------------------------------
 >added functionality
