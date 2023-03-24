@@ -41,7 +41,7 @@ namespace WF
         {
             FolderBrowserDialog folderPath = new FolderBrowserDialog();
             folderPath.ShowDialog();
-            listBox2.Items.Add(folderPath);
+            listBox2.Items.Add(folderPath.SelectedPath);
         }
 
         private void btnClearFolders_Click(object sender, EventArgs e)
@@ -58,6 +58,12 @@ namespace WF
 
         private void btmEncrypt_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(tbPass.Text))
+            {
+                MessageBox.Show(text: "Password can't be empty!",
+                    "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (tbPass.Text.Length < 8)
             {
                 MessageBox.Show("Password must have 8 characters!",
@@ -92,10 +98,17 @@ namespace WF
                     }
                 }
             }
+            MessageBox.Show("successfully Encryption!", "Congrats",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
         private void btnDecrypt_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(tbPass.Text))
+            {
+                MessageBox.Show(text: "Password can't be empty!",
+                    "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (tbPass.Text.Length < 8)
             {
                 MessageBox.Show("Password must have 8 characters!",
@@ -118,7 +131,7 @@ namespace WF
                 {
                     for (int i = 0; i < listBox2.Items.Count; i++)
                     {
-                        string file = "" + listBox1.Items[i];
+                        string file = "" + listBox2.Items[i];
                         string[] getFiles = Directory.GetFiles(file);
                         foreach (var fileName in getFiles)
                         {
@@ -132,6 +145,7 @@ namespace WF
                 }
 
             }
+            MessageBox.Show("Successfully Decryption!", "Congrats", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void EncryptFile(string inputFile, string outputFile, string password)
         {

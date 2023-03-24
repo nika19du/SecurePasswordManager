@@ -17,6 +17,9 @@ namespace WF
             if (result == "Login Successful")
             {
                 MessageBox.Show(result, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                PasswordManager passwordManager = new PasswordManager();
+                passwordManager.ShowDialog();
+                this.Close(); 
             }
             else
             {
